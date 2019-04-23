@@ -15,7 +15,7 @@ export default class SignUp extends React.Component {
     this.setState({ [key]: val })
   }
   signUp = async () => {
-    const { email, password } = this.state
+    const { email, password, password2 } = this.state
     try {
       // here place your signup logic
       console.log('user successfully signed up!: ', success)
@@ -25,47 +25,35 @@ export default class SignUp extends React.Component {
     ApiController.GuardarSignUp(this.state)  //REVISAR ESTOOO
   }
 
-  render() {
+  render() 
+  {
     return (
-      <View style={styles.container}>
+    <View style={styles.container}> 
+      <View style={styles.image}>
         <Image
        style={styles.image}
        source={{uri: 'https://images-na.ssl-images-amazon.com/images/I/41cB04ewCyL._SY355_.jpg'}}
         />
-        <TextInput
-          style={styles.input}
-          placeholder='Email'
-          autoCapitalize="none"
-          placeholderTextColor='white'
-          onChangeText={val => this.onChangeText('email', val)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder='Password'
-          secureTextEntry={true}
-          autoCapitalize="none"
-          placeholderTextColor='white'
-          onChangeText={val => this.onChangeText('password', val)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder='Password2'
-          autoCapitalize="none"
-          placeholderTextColor='white'
-          onChangeText={val => this.onChangeText('password2', val)}
-        />
+      </View>
+      <View style={styles.btn}>
         <Button
-          style={{color: 'green'}}
+          title='Sign In'
+          onPress={this.signUp}
+        />
+      </View>
+        <View style={styles.btn}>
+        <Button
           title='Sign Up'
           onPress={this.signUp}
         />
       </View>
-    )
+    </View>
+    );
   }
 }
 
 const styles = StyleSheet.create({
-  input: {
+  btn: {
     width: 350,
     height: 55,
     backgroundColor: '#42A5F5',

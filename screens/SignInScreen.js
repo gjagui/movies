@@ -9,13 +9,13 @@ import {
 
 export default class SignUp extends React.Component {
   state = {
-    email: '', password: '', password2: ''
+    email: '', password: '',login:''
   }
   onChangeText = (key, val) => {
     this.setState({ [key]: val })
   }
   signUp = async () => {
-    const { email, password } = this.state
+    const { email, password, login } = this.state
     try {
       // here place your signup logic
       console.log('user successfully signed up!: ', success)
@@ -47,16 +47,8 @@ export default class SignUp extends React.Component {
           placeholderTextColor='white'
           onChangeText={val => this.onChangeText('password', val)}
         />
-        <TextInput
-          style={styles.input}
-          placeholder='Password2'
-          autoCapitalize="none"
-          placeholderTextColor='white'
-          onChangeText={val => this.onChangeText('password2', val)}
-        />
         <Button
-          style={{color: 'green'}}
-          title='Sign Up'
+          title='Sign In'
           onPress={this.signUp}
         />
       </View>

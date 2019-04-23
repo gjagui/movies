@@ -3,15 +3,37 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
+import LoginScreen from '../screens/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import MoviesScreen from '../screens/MoviesScreen';
+//import RatingScreen from '../screens/RatingScreen';
+//import SignUpScreen from '../screens/SignUpScreen';
+import SignInScreen from '../screens/SignInScreen';
+
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
 });
 
 HomeStack.navigationOptions = {
+  tabBarLabel: 'Registro',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+};
+
+const LoginStack = createStackNavigator({
+  Login: {screen : LoginScreen}
+});
+
+LoginStack.navigationOptions = {
   tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -25,12 +47,12 @@ HomeStack.navigationOptions = {
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const SignInStack = createStackNavigator({
+  SignIn: {screen : SignInScreen}
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+SignInStack.navigationOptions = {
+  tabBarLabel: 'SignIn',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -39,22 +61,28 @@ LinksStack.navigationOptions = {
   ),
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
+const MoviesStack = createStackNavigator({
+  Movies: {screen : MoviesScreen}
 });
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+MoviesStack.navigationOptions = {
+  tabBarLabel: 'Movies',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
     />
   ),
 };
 
+
 export default createBottomTabNavigator({
+  LoginStack,
   HomeStack,
-  LinksStack,
-  SettingsStack,
+  SignInStack
+  
 });
