@@ -7,51 +7,71 @@ import {
   Image
 } from 'react-native'
 
-export default class SignUp extends React.Component {
+import ApiController from '../controller/ApiController';
+
+export default class SignIn extends React.Component {
   state = {
-    email: '', password: '',login:''
+    username: '', password: '',autorizado: false
   }
   onChangeText = (key, val) => {
     this.setState({ [key]: val })
   }
-  signUp = async () => {
-    const { email, password, login } = this.state
-    try {
-      // here place your signup logic
-      console.log('user successfully signed up!: ', success)
-    } catch (err) {
-      console.log('error signing up: ', err)
-    }
-    ApiController.GuardarSignUp(this.state)  //REVISAR ESTOOO
-  }
+  signIn = async () => {
 
+    const { username, password,autorizado} = this.state
+    // try {
+    //   // here place your signup logic
+    //   console.log('user successfully signed up!: ', success)
+    // } catch (err) {
+    //   console.log('error signing up: ', err)
+    // };
+    ApiController.SignIn(this.state,this.okBusqueda.bind(this))
+    if(this.state.autorizado){
+      console.log("contecta2");
+    }
+    else{
+      this.setState({autorizado : false});
+      console.log("juira hacker");
+    } //REVISAR ESTOOO
+
+  }
+ okBusqueda(user)
+ {
+   if (user)
+        this.setState({autorizado : true});
+ }
   render() {
     return (
-      <View style={styles.container}>
-        <Image
-       style={styles.image}
-       source={{uri: 'https://images-na.ssl-images-amazon.com/images/I/41cB04ewCyL._SY355_.jpg'}}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder='Email'
-          autoCapitalize="none"
-          placeholderTextColor='white'
-          onChangeText={val => this.onChangeText('email', val)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder='Password'
-          secureTextEntry={true}
-          autoCapitalize="none"
-          placeholderTextColor='white'
-          onChangeText={val => this.onChangeText('password', val)}
-        />
-        <Button
-          title='Sign In'
-          onPress={this.signUp}
-        />
-      </View>
+    /*  if (this.state.autorizado){
+          alert ('noautorizado');}
+*/
+
+        <View style={styles.container}>
+          <Image
+         style={styles.image}
+         source={{uri: 'https://images-na.ssl-images-amazon.com/images/I/41cB04ewCyL._SY355_.jpg'}}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder='Email'
+            autoCapitalize="none"
+            placeholderTextColor='white'
+            onChangeText={val => this.onChangeText('username', val)}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder='Password'
+            secureTextEntry={true}
+            autoCapitalize="none"
+            placeholderTextColor='white'
+            onChangeText={val => this.onChangeText('password', val)}
+          />
+          <Button
+            title='Sign In'
+            onPress={this.signIn}
+          />
+        </View>
+
     )
   }
 }

@@ -5,30 +5,38 @@ import {
   TextInput,
   StyleSheet,
   Image
-} from 'react-native'
+} from 'react-native';
+//import ApiController from '../controller/ApiController';
+
 
 export default class SignUp extends React.Component {
-  state = {
-    email: '', password: '', password2: ''
+  static navigationOptions = {
+    title: 'Equipos a calificar',
+  };
+  constructor(props) {
+    super(props);
+
+  this.state = {
+    email: '', password: ''
   }
+}
   onChangeText = (key, val) => {
     this.setState({ [key]: val })
   }
-  signUp = async () => {
-    const { email, password, password2 } = this.state
-    try {
-      // here place your signup logic
-      console.log('user successfully signed up!: ', success)
-    } catch (err) {
-      console.log('error signing up: ', err)
-    }
-    ApiController.GuardarSignUp(this.state)  //REVISAR ESTOOO
+  signIn = async () => {
+
+    this.props.navigation.navigate('SignIn');
   }
 
-  render() 
+  signUp = async () => {
+  
+    this.props.navigation.navigate('Login');
+  }
+
+  render()
   {
     return (
-    <View style={styles.container}> 
+    <View style={styles.container}>
       <View style={styles.image}>
         <Image
        style={styles.image}
@@ -38,7 +46,7 @@ export default class SignUp extends React.Component {
       <View style={styles.btn}>
         <Button
           title='Sign In'
-          onPress={this.signUp}
+          onPress={this.signIn}
         />
       </View>
         <View style={styles.btn}>

@@ -5,23 +5,24 @@ import {
   TextInput,
   StyleSheet,
   Image
-} from 'react-native'
+} from 'react-native';
+import ApiController from '../controller/ApiController';
 
 export default class SignUp extends React.Component {
   state = {
-    email: '', password: '', password2: ''
+    username: '', password: ''
   }
   onChangeText = (key, val) => {
     this.setState({ [key]: val })
   }
   signUp = async () => {
-    const { email, password } = this.state
-    try {
-      // here place your signup logic
-      console.log('user successfully signed up!: ', success)
-    } catch (err) {
-      console.log('error signing up: ', err)
-    }
+    const { username, password } = this.state
+    // try {
+    //   // here place your signup logic
+    //   console.log('user successfully signed up!: ', success)
+    // } catch (err) {
+    //   console.log('error signing up: ', err)
+    // }
     ApiController.GuardarSignUp(this.state)  //REVISAR ESTOOO
   }
 
@@ -37,7 +38,7 @@ export default class SignUp extends React.Component {
           placeholder='Email'
           autoCapitalize="none"
           placeholderTextColor='white'
-          onChangeText={val => this.onChangeText('email', val)}
+          onChangeText={val => this.onChangeText('username', val)}
         />
         <TextInput
           style={styles.input}
@@ -50,9 +51,10 @@ export default class SignUp extends React.Component {
         <TextInput
           style={styles.input}
           placeholder='Password2'
+          secureTextEntry={true}
           autoCapitalize="none"
           placeholderTextColor='white'
-          onChangeText={val => this.onChangeText('password2', val)}
+          //onChangeText={val => this.onChangeText('password2', val)}
         />
         <Button
           style={{color: 'green'}}
