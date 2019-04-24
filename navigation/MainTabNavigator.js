@@ -6,9 +6,10 @@ import TabBarIcon from '../components/TabBarIcon';
 import LoginScreen from '../screens/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
 import MoviesScreen from '../screens/MoviesScreen';
-//import RatingScreen from '../screens/RatingScreen';
 //import SignUpScreen from '../screens/SignUpScreen';
 import SignInScreen from '../screens/SignInScreen';
+//import SearchFilmScreen from '../screens/SearchFilmScreen';
+import RatingScreen from '../screens/RatingScreen';
 
 
 const HomeStack = createStackNavigator({
@@ -79,10 +80,41 @@ MoviesStack.navigationOptions = {
   ),
 };
 
+const RatingStack = createStackNavigator({
+  Rating: {screen : RatingScreen}
+});
+
+RatingStack.navigationOptions = {
+  tabBarLabel: 'Rating',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
+    />
+  ),
+};
+
+/* const SearchFilmStack = createStackNavigator({
+  SearchFilm: {screen : SearchFilmScreen}
+});
+
+SearchFilmStack.navigationOptions = {
+  tabBarLabel: 'SearchFilm',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
+    />
+  ),
+}; */
+
 
 export default createBottomTabNavigator({
   LoginStack,
   HomeStack,
-  SignInStack
+  SignInStack,
+  //SearchFilmStack,
+  RatingStack
   
 });
+
