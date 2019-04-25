@@ -58,11 +58,17 @@ export default class SignUp extends React.Component {
           placeholderTextColor='gray'
           onChangeText={val => this.onChangeText('password2', val)}
         />
+
+        <View style={styles.container3}>
+        <View style={styles.btn}>
         <Button
-          style={{color: 'green'}}
+        color='rgb(50,156,129)'
+          style={styles.button}
           title='Sign Up'
           onPress={this.signUp}
         />
+      </View>
+      </View>
       </View>
       </ImageBackground>
     )
@@ -95,5 +101,20 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 3,
     alignItems: 'center'
+  },
+  container3: {
+    flex: 1,
+    margin: 3,
+    alignItems: 'center'
+  },
+  btn: {
+    width: 350,
+    height: 45,
+    backgroundColor: 'rgb(50,156,129)',
+    margin: 10,
+    padding: 8,
+    borderRadius: 14,
+    fontSize: 18,
+    fontWeight: '200',
   }
 })

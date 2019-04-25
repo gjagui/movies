@@ -52,11 +52,16 @@ export default class SignUp extends React.Component {
           onChangeText={val => this.onChangeText('password', val)}
           
         />
+        <View style={styles.container2}>
+        <View style={styles.btn}>
         <Button
+        style={styles.btn}
           title='Sign In'
           onPress={this.signUp}
-          borderRadius= {10}
+          color='rgb(50,156,129)'
         />
+                </View>
+      </View>
       </View>
       </ImageBackground>
     )
@@ -89,6 +94,16 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 3,
     alignItems: 'center'
+  },
+  btn: {
+    width: 350,
+    height: 45,
+    backgroundColor: 'rgb(50,156,129)',
+    margin: 10,
+    padding: 8,
+    borderRadius: 14,
+    fontSize: 18,
+    fontWeight: '200',
   }
 
 })

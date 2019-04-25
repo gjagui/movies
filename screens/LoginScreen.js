@@ -30,28 +30,31 @@ export default class SignUp extends React.Component {
   {
     return (
       <ImageBackground source={require ("../assets/images/foto.jpg")} style={{width: '100%', height: '100%'}}>
-    <View style={styles.container1}> 
-      <View style={styles.image}>
-        <Image
-       style={styles.image}
-       source={require ("../assets/images/logo.jpg")}
-        />
-      </View>
-      </View>
+        <View style={styles.container1}> 
+          <View style={styles.image}>
+            <Image
+              style={styles.image}
+              source={require ("../assets/images/logo.jpg")}
+            />
+          </View>
+        </View>
       <View style={styles.container2}>
-      <View style={styles.btn}>
-        <Button
-          title='Sign In'
-          onPress={this.signUp}
-        />
-      </View>
         <View style={styles.btn}>
-        <Button
-          title='Sign Up'
-          onPress={this.signUp}
-        />
+          <Button
+          color='rgb(50,156,129)'
+           title='Sign In'
+            onPress={this.signUp}
+          />
+        </View>
+        <View style={styles.btn}>
+          <Button
+          color='rgb(50,156,129)'
+            title='Sign Up'
+            onPress={this.signUp}
+
+          />
+        </View>
       </View>
-    </View>
     </ImageBackground>
     );
   }
@@ -61,10 +64,9 @@ const styles = StyleSheet.create({
   btn: {
     width: 350,
     height: 45,
-    backgroundColor: 'white',
+    backgroundColor: 'rgb(50,156,129)',
     margin: 10,
     padding: 8,
-    color: 'black',
     borderRadius: 14,
     fontSize: 18,
     fontWeight: '200',
@@ -83,5 +85,5 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 3,
     alignItems: 'center'
-  }
+  },
 })

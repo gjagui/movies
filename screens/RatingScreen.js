@@ -120,7 +120,10 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center'
-    }
+    },
+    button: {
+      color: 'rgb(50,156,29)'
+    } 
 })
 
 
