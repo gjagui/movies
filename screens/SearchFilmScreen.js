@@ -20,15 +20,15 @@ export default class SearchFilm extends Component {
 
     let movies = [];
 
-    if (search.length > 4) {
+    if (search.length > 3) {
 
       fetch(`${MOVIE_URL}${search}`)
       .then(result => result.json())
       .then(movies_json => {
         if (movies_json.Response == "True") {
           movies_json.Search.forEach(movie_value => {
-            let {Poster, Title, Year} = movie_value;
-            let movie = {Poster, Title, Year};
+            let { Poster, Title, Year, imdbID } = movie_value;
+            let movie = {Poster, Title, Year, imdbID};
             movies.push(movie);
           });
           this.setState({ movies });
@@ -36,7 +36,8 @@ export default class SearchFilm extends Component {
       })
       .catch(error => console.log(error));
     }
-    this.setState({ search });
+
+    this.setState({ search, movies });
   }
   
   render() {
@@ -48,15 +49,15 @@ export default class SearchFilm extends Component {
       cards = this.state.movies.map((movie) => {
         
         return (
-            <View key= {movie.Title} style={ styles.card }>
+            <View key= {movie.imdbID} style={ styles.card }>
             
               <TouchableHighlight onPress={() => this._onPressButton}>
               
-                <Image source={{uri: movie.Poster}} style={{width: 150, height: 150}} />
+                <Image source = {{uri: movie.Poster}} style={{width: 150, height: 150}} />
 
               </TouchableHighlight>
 
-              <Text>{movie.Title} - {movie.Year} </Text>
+              <Text>{movie.Title} - {movie.Year}</Text>
             
             </View>
         );
