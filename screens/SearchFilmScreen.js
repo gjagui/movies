@@ -1,6 +1,6 @@
-import React, { Component }               from 'react';
-import { ScrollView, View, Text, TouchableHighlight, Image, StyleSheet } from 'react-native';
-import { SearchBar }                      from 'react-native-elements';
+import React, { Component } from 'react';
+import { ScrollView, Text } from 'react-native';
+import { SearchBar, ListItem } from 'react-native-elements';
 
 const MOVIE_URL = "http://www.omdbapi.com/?i=tt3896198&apikey=d0b64143&s=";
 
@@ -41,46 +41,30 @@ export default class SearchFilm extends Component {
   }
   
   render() {
-    
-    let cards = <Text></Text>;
+
+    let lista = <Text></Text>;
 
     if (this.state.movies.length > 0) {
-
-      cards = this.state.movies.map((movie) => {
-        
-        return (
-            <View key= {movie.imdbID} style={ styles.card }>
-            
-              <TouchableHighlight onPress={() => this._onPressButton}>
-              
-                <Image source = {{uri: movie.Poster}} style={{width: 150, height: 150}} />
-
-              </TouchableHighlight>
-
-              <Text>{movie.Title} - {movie.Year}</Text>
-            
-            </View>
-        );
-      });  
+      lista = this.state.movies.map((movie, i) => (
+        <ListItem
+          key={i}
+          leftAvatar = {{ source: { uri: movie.Poster } }}
+          title = {movie.Title}
+          subtitle = {movie.Year}
+          onPress = {() => console.log("onPress:", movie.imdbID)}
+        />
+      ));
     }
-    
+
     return (
-      <View>
+      <ScrollView>
       <SearchBar
         placeholder = "¿Qué película te gustaría calificar?"
         onChangeText = { this.updateSearch }
         value = { this.state.search }  
-        lightTheme ={ true }
-        />
-        <ScrollView>{ cards }</ScrollView>
-      </View>
+        lightTheme = { true }/>
+        {lista}
+      </ScrollView>
       );
     }
 }
-
-const styles = StyleSheet.create({
-  card: {
-    flexDirection: 'column',
-    alignItems: 'center'
-  }
-});
