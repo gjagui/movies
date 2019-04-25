@@ -31,7 +31,7 @@ export default class RatingScreen extends Component {
     }
   }
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.fetchComments(this.state.movie.imdbID);
   }
 
@@ -59,11 +59,11 @@ export default class RatingScreen extends Component {
 
     }).then((response) => {
       console.log(texto);
-      this.props.navigation.navigate('Movie',{username: this.state.username, movieData: this.state.movie, title: this.state.Title});
+      this.fetchComments();
       return response.json();
     }).then(responseData => {
       console.log(responseData);
-      this.props.navigation.navigate('Movie',{username: this.state.username, movieData: this.state.movie, title: this.state.Title});
+      this.fetchComments();
 
       //console.log("Recibi datos");
     }).catch((err) => {
