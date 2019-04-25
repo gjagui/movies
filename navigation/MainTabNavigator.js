@@ -9,6 +9,7 @@ import MoviesScreen from '../screens/MoviesScreen';
 import SignInScreen from '../screens/SignInScreen';
 import SearchFilmScreen from '../screens/SearchFilmScreen';
 import RatingScreen from '../screens/RatingScreen';
+import UserCommentsScreen from '../screens/UserCommentsScreen';
 
 
 const HomeStack = createStackNavigator({
@@ -107,13 +108,26 @@ SearchFilmStack.navigationOptions = {
   ),
 };
 
+const UserCommentsStack = createStackNavigator({
+  UserComments: {screen : UserCommentsScreen}
+});
+
+UserCommentsStack.navigationOptions = {
+  tabBarLabel: 'UserComments',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
+    />
+  ),
+};
 
 export default createBottomTabNavigator({
   LoginStack,
   HomeStack,
   SignInStack,
   SearchFilmStack,
-  RatingStack
-  
+  RatingStack,
+  UserCommentsStack
 });
 
