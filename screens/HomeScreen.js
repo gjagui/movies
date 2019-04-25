@@ -4,7 +4,8 @@ import {
   Button,
   TextInput,
   StyleSheet,
-  Image
+  Image,
+  ImageBackground
 } from 'react-native'
 
 export default class SignUp extends React.Component {
@@ -27,31 +28,34 @@ export default class SignUp extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ImageBackground source={require ("../assets/images/foto.jpg")} style={{width: '100%', height: '100%'}}>
+      <View style={styles.container1}>  
         <Image
        style={styles.image}
-       source={{uri: 'https://images-na.ssl-images-amazon.com/images/I/41cB04ewCyL._SY355_.jpg'}}
+       source={require ("../assets/images/logo.jpg")}
         />
+        </View>
+        <View style={styles.container2}>
         <TextInput
           style={styles.input}
-          placeholder='Email'
+          placeholder='Correo Electrónico'
           autoCapitalize="none"
-          placeholderTextColor='white'
+          placeholderTextColor='gray'
           onChangeText={val => this.onChangeText('email', val)}
         />
         <TextInput
           style={styles.input}
-          placeholder='Password'
+          placeholder='Contraseña'
           secureTextEntry={true}
           autoCapitalize="none"
-          placeholderTextColor='white'
+          placeholderTextColor='gray'
           onChangeText={val => this.onChangeText('password', val)}
         />
         <TextInput
           style={styles.input}
-          placeholder='Password2'
+          placeholder='Re-Contraseña'
           autoCapitalize="none"
-          placeholderTextColor='white'
+          placeholderTextColor='gray'
           onChangeText={val => this.onChangeText('password2', val)}
         />
         <Button
@@ -60,6 +64,7 @@ export default class SignUp extends React.Component {
           onPress={this.signUp}
         />
       </View>
+      </ImageBackground>
     )
   }
 }
@@ -67,22 +72,29 @@ export default class SignUp extends React.Component {
 const styles = StyleSheet.create({
   input: {
     width: 350,
-    height: 55,
-    backgroundColor: '#42A5F5',
+    height: 45,
+    backgroundColor: 'white',
     margin: 10,
     padding: 8,
-    color: 'white',
+    color: 'black',
     borderRadius: 14,
     fontSize: 18,
-    fontWeight: '500',
+    fontWeight: '200',
   },
   image: {
-    width: 300,
-    height: 300
+    width: 250,
+    height: 200,
+    borderRadius: 10
+    
   },
-  container: {
+  container1: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center'
+  },
+  container2: {
+    flex: 1,
+    margin: 3,
     alignItems: 'center'
   }
 })
