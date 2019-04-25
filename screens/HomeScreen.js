@@ -99,7 +99,7 @@ fontWeight: '200',
 },
 image: {
   width: 250,
-  height: 200,
+  height: 250,
   borderRadius: 10
 
 },

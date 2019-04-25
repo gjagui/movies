@@ -9,11 +9,13 @@ export default class UserComments extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { comments: {} };
+        this.state = { comments: {},
+        username: this.props.navigation.getParam('username')
+      };
     };
 
     componentDidMount = () => {
-        this.fetchUserComment("gjagui@gmail.com");
+        this.fetchUserComment(this.state.username);
     };
 
     search = () => {
@@ -57,7 +59,7 @@ export default class UserComments extends Component {
                 onPress={this.search}
               />
               </View>
-              <Text h1 style={styles.texto}>Estos son los comentarios que realizaste:</Text>
+              <Text h1 style={styles.texto}>Estos son los comentarios que hiciste:</Text>
             </View>
                 { comments }
             </ImageBackground>

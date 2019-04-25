@@ -129,8 +129,8 @@ const styles = StyleSheet.create({
   fontWeight: '200',
   },
   image: {
-    width: 190,
-        height: 200,
+    width: 250,
+        height: 250,
         borderRadius: 20
   },
   container1: {
