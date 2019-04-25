@@ -82,10 +82,9 @@ const styles = StyleSheet.create({
     fontWeight: '200',
   },
   image: {
-    width: 250,
+    width: 190,
     height: 200,
-    borderRadius: 10
-    
+    borderRadius: 20
   },
   container1: {
     flex: 1,
