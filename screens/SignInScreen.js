@@ -44,7 +44,7 @@ export default class SignIn extends React.Component {
  {
    if (user) {
         console.log("todo ok");
-        this.props.navigation.navigate('Search',{username: this.state.username});
+        this.props.navigation.navigate('Comments',{username: this.state.username});
         }
         //this.setState({autorizado : true});
  }

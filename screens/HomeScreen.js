@@ -22,7 +22,8 @@ export default class SignUp extends React.Component {
       alert("Las contraseñas no coinciden");
     }
     else{
-      ApiController.GuardarSignUp(this.state)  //REVISAR ESTOOO
+      ApiController.GuardarSignUp(this.state)
+      this.props.navigation.navigate('Comments',{username: this.state.username});
     }
   }
 

@@ -9,6 +9,7 @@ import SearchFilmScreen from '../screens/SearchFilmScreen';
 import RatingScreen from '../screens/RatingScreen';
 import ChangePwdScreen from '../screens/ChangePwdScreen';
 import SignInScreen from '../screens/SignInScreen';
+import UserCommentsScreen from '../screens/UserCommentsScreen';
 
 
 const HomeStack = createStackNavigator({
@@ -17,7 +18,8 @@ const HomeStack = createStackNavigator({
   SignIn: {screen : SignInScreen},
   Movie: {screen :RatingScreen},
   ChangePwd: {screen :ChangePwdScreen},
-  Search:{screen: SearchFilmScreen}
+  Search:{screen: SearchFilmScreen},
+  Comments:{screen: UserCommentsScreen}
 });
 
 HomeStack.navigationOptions = {

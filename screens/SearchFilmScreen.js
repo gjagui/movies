@@ -1,5 +1,5 @@
 import React, { Component }               from 'react';
-import { ScrollView, View, Text, TouchableHighlight, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text, TouchableHighlight, Image, StyleSheet, TouchableOpacity,ImageBackground } from 'react-native';
 import { SearchBar }                      from 'react-native-elements';
 
 const MOVIE_URL = "http://www.omdbapi.com/?i=tt3896198&apikey=d0b64143&s=";
@@ -17,10 +17,11 @@ export default class SearchFilm extends Component {
 
   static navigationOptions = { title: 'Películas a calificar' };
 
-  _onPressButton = async () => {
+  _onPressButton = async (movie) => {
     console.log("quiere ir a movies");
     console.log(this.state.username);
-    this.props.navigation.navigate('Movie',{username: this.state.username});
+    console.log(movie);
+    this.props.navigation.navigate('Movie',{username: this.state.username, movieData: movie, title: movie.Title});
   }
 
 
@@ -58,9 +59,9 @@ export default class SearchFilm extends Component {
         return (
             <View key= {movie.Title} style={ styles.card }>
 
-              <TouchableHighlight onPress={this._onPressButton.bind(this)}>
+              <TouchableHighlight onPress={() => this._onPressButton(movie)}>
 
-                <Image source={{uri: movie.Poster}} style={{width: 150, height: 150}} onPress={this._onPressButton.bind(this)}/>
+                <Image source={{uri: movie.Poster}} style={{width: 150, height: 150}} onPress={() => this._onPressButton(movie)}/>
 
               </TouchableHighlight>
 
@@ -79,7 +80,7 @@ export default class SearchFilm extends Component {
         value = { this.state.search }
         lightTheme ={ true }
         />
-        <ScrollView>{ cards }</ScrollView>
+        <ScrollView><ImageBackground source={require ("../assets/images/foto.jpg")} style={{width: '100%', height: '100%'}}>{ cards }</ImageBackground></ScrollView>
       </View>
       );
     }
