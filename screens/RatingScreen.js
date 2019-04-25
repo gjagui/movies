@@ -7,7 +7,8 @@ import {
   ImageBackground,
   Text,
   ScrollView,
-  Button
+  Button,
+  Image
 } from 'react-native'
 import { BorderlessButton } from 'react-native-gesture-handler';
 
@@ -55,7 +56,7 @@ export default class RatingScreen extends Component {
 
   guardarCalificacion() {
     username1 = "dani@gmail.com";
-    texto = {title: this.state.title, username: username1, comment: this.state.comentario, score: this.state.comment_rating, imdbID: "tt0120338"};
+    texto = { title: this.state.title, username: username1, comment: this.state.comentario, score: this.state.comment_rating, imdbID: "tt0120338" };
     fetch(`${SAVECOMMENTS_URL}`, {
       method: 'POST', // or 'PUT'
       mode: "cors",
@@ -85,23 +86,23 @@ export default class RatingScreen extends Component {
 
     if (this.state.comments.length > 0) {
 
-<<<<<<< HEAD
+
       comments = this.state.comments.map((comment) => {
 
         return (
-            <View key= {comment._id} style={styles.comment}>
-                    <Text style={styles.user}>{comment.username}{"\n"}</Text>
+          <View key={comment._id} style={styles.comment}>
+            <Text style={styles.user}>{comment.username}{"\n"}</Text>
 
-                    <Text>Comentario: {comment.comment}{"\n"}</Text>
-                    <Text>Estrellas: {comment.score}</Text>
-                </View>
+            <Text>Comentario: {comment.comment}{"\n"}</Text>
+            <Text>Estrellas: {comment.score}</Text>
+          </View>
 
         );
       });
     }
 
     return (
-<<<<<<< HEAD
+
       <View style={styles.container}>
         <ScrollView>
           <ImageBackground source={require("../assets/images/foto.jpg")} style={{ width: '100%', height: '100%' }}>
@@ -132,44 +133,21 @@ export default class RatingScreen extends Component {
                 autoCapitalize="none"
                 placeholderTextColor='gray'
                 onChangeText={val => this.onChangeText('comentario', val)} />
+              <Button
+                title='Calificar'
+                onPress={this.guardarCalificacion.bind(this)}
+                borderRadius={10}
+              />
             </View>
+
 
             {comments}
           </ImageBackground>
         </ScrollView>
       </View>
-
-      <ScrollView>
-
-        <ImageBackground source={{ uri: this.state.movie.Poster }} style={{ width: '100%', height: '100%' }}>
-          <Text>Titulo: {this.state.title} Rating: {this.state.rating} Votos: {this.state.votes}</Text>
-
-          {comments}
-
-          <TextInput
-            style={styles.input}
-            placeholder='Escribe un comentario ...'
-            textAlignVertical='top'
-            alignItems="center"
-            autoCapitalize="none"
-            placeholderTextColor='gray'
-            onChangeText={val => this.onChangeText('comentario', val)} />
-
-          <Rating
-            showRating
-            onFinishRating={this.ratingCompleted.bind(this)}
-            style={{ paddingVertical: 10 }}
-          />
-
-          <Button
-            title='Calificar'
-            onPress={this.guardarCalificacion.bind(this)}
-            borderRadius={10}
-          />
-        </ImageBackground>
-
-      </ScrollView>
     );
+
+    
   }
 
 }
@@ -191,7 +169,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
-  }
+  },
   image: {
     width: 190,
     height: 200,
