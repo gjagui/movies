@@ -128,11 +128,9 @@ const styles = StyleSheet.create({
     fontWeight: '200',
   },
 
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
+    button: {
+      color: 'rgb(50,156,29)'
+    } 
 })
 
 
