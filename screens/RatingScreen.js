@@ -13,6 +13,7 @@ import { BorderlessButton } from 'react-native-gesture-handler';
 
 const MOVIE_URL = "http://www.omdbapi.com/?apikey=d0b64143&i=";
 const COMMENTS_URL = "http://gustavomovies2.herokuapp.com/comments/imdbID/";
+const SAVECOMMENTS_URL = "http://gustavomovies2.herokuapp.com/comments/Create/"
 
 export default class RatingScreen extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ export default class RatingScreen extends Component {
       rating: 0,
       comments: [],
       votes: 0,
-      comentario: "",
+      comentario: '',
     }
   }
 
@@ -53,9 +54,28 @@ export default class RatingScreen extends Component {
   ratingCompleted = (rating) => this.setState({ comment_rating: rating });
 
   guardarCalificacion() {
-    console.log("Entre");
-    console.log("Rating: " + this.state.rating);
-    console.log("Comentario: " + this.state.comentario);
+    username1 = "dani@gmail.com";
+    texto = {title: this.state.title, username: username1, comment: this.state.comentario, score: this.state.comment_rating, imdbID: "tt0120338"};
+    fetch(`${SAVECOMMENTS_URL}`, {
+      method: 'POST', // or 'PUT'
+      mode: "cors",
+      headers: { 'Content-Type': 'application/json' },
+      // body: JSON.stringify({title: this.state.title, username: username1, comment: this.state.comentario, score: this.state.rating}) // data can be `string` or {object}!
+      body: JSON.stringify(texto),
+
+    }).then((response) => {
+      console.log(texto);
+      return response.json();
+    }).then(responseData => {
+      console.log(responseData);
+
+      //console.log("Recibi datos");
+    }).catch((err) => {
+      console.log(err);
+    });
+
+
+
   }
 
 
@@ -166,6 +186,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '200',
   },
+
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
   image: {
     width: 190,
     height: 200,
