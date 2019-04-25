@@ -44,17 +44,20 @@ export default class SearchFilm extends Component {
     let cards = <Text></Text>;
 
     if (this.state.movies.length > 0) {
+
       cards = this.state.movies.map((movie) => {
+        
         return (
-            <View style={ styles.card }>
-            <Image key = {movie.Poster}
-                  source={{uri: movie.Poster}}
-                  style={{width: 100, height: 100}} />
-            <TouchableHighlight onPress={() => this._onPressButton}>
-            <Text key = {movie.Title}>
-            {movie.Title}
-            </Text>
-            </TouchableHighlight>
+            <View key= {movie.Title} style={ styles.card }>
+            
+              <TouchableHighlight onPress={() => this._onPressButton}>
+              
+                <Image source={{uri: movie.Poster}} style={{width: 150, height: 150}} />
+
+              </TouchableHighlight>
+
+              <Text>{movie.Title} - {movie.Year} </Text>
+            
             </View>
         );
       });  
