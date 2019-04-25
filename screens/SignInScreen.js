@@ -58,7 +58,7 @@ export default class SignUp extends React.Component {
         style={styles.btn}
           title='Sign In'
           onPress={this.signUp}
-          color='rgb(50,156,129)'
+          color='#546E7A'
         />
                 </View>
       </View>
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   btn: {
     width: 350,
     height: 45,
-    backgroundColor: 'rgb(50,156,129)',
+    backgroundColor: '#546E7A',
     margin: 10,
     padding: 8,
     borderRadius: 14,
