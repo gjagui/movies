@@ -63,6 +63,7 @@ export default class SignUp extends React.Component {
         <View style={styles.container2}>
           <View style={styles.btn}>
           <Button
+            color='#6584be'
             title='Sign Up'
             onPress={this.signUp}
           />
@@ -87,9 +88,9 @@ const styles = StyleSheet.create({
   fontWeight: '200',
 },
 btn: {
-width: 150,
+width: 350,
 height: 45,
-backgroundColor: 'white',
+backgroundColor: '#6584be',
 margin: 10,
 padding: 8,
 color: 'black',

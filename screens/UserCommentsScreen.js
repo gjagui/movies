@@ -55,6 +55,7 @@ export default class UserComments extends Component {
             <View style={styles.container2}>
               <View style={styles.btn}>
               <Button
+                color='#6584be'
                 title='Buscar Peliculas'
                 onPress={this.search}
               />
@@ -81,9 +82,9 @@ const styles = StyleSheet.create({
   fontWeight: '200',
 },
 btn: {
-width: 150,
+width: 350,
 height: 45,
-backgroundColor: 'white',
+backgroundColor: '#6584be',
 margin: 10,
 padding: 8,
 color: 'black',

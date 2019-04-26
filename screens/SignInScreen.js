@@ -77,12 +77,14 @@ export default class SignIn extends React.Component {
         <View style={styles.container2}>
           <View style={styles.btn}>
           <Button
+            color='#6584be'
             title='Sign In'
             onPress={this.signIn}
           />
           </View>
-          <View style={styles.btn2}>
+          <View style={styles.btn}>
           <Button
+            color='#6584be'
             title='Cambiar contraseña'
             onPress={this.changePwd}
           />
@@ -107,9 +109,9 @@ const styles = StyleSheet.create({
     fontWeight: '200',
   },
   btn: {
-  width: 150,
+  width: 350,
   height: 45,
-  backgroundColor: 'white',
+  backgroundColor: '#6584be',
   margin: 10,
   padding: 8,
   color: 'black',

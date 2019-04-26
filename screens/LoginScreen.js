@@ -49,12 +49,14 @@ export default class SignUp extends React.Component {
       <View style={styles.container2}>
       <View style={styles.btn}>
         <Button
+          color='#6584be'
           title='Sign In'
           onPress={this.signIn}
         />
       </View>
         <View style={styles.btn}>
         <Button
+          color='#6584be'
           title='Sign Up'
           onPress={this.signUp}
         />
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
   btn: {
     width: 350,
     height: 45,
-    backgroundColor: 'white',
+    backgroundColor: '#6584be',
     margin: 10,
     padding: 8,
     color: 'black',
@@ -90,6 +92,6 @@ const styles = StyleSheet.create({
   container2: {
     flex: 1,
     margin: 3,
-    alignItems: 'center'
+    alignItems: 'center',
   }
 })
