@@ -42,7 +42,6 @@ export default class UserComments extends Component {
 
                 <View key= {comment._id} style={styles.comment}>
                     <Text h1>Título: {comment.title}</Text>
-                    <Text h2>Usuario: {comment.username}</Text>
                     <Text h3>Voto: {comment.score}</Text>
                     <Text h4>Comentario: {comment.comment}</Text>
                 </View>
