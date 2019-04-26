@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { ScrollView, Text, View, StyleSheet, Button,ImageBackground } from 'react-native';
 import ApiController from '../controller/ApiController';
 
-const USER_COMMENTS_URL = "http://gustavomovies2.herokuapp.com/comments/user/";
-
 export default class UserComments extends Component {
 
     static navigationOptions = { title: 'Mis Comentarios' };

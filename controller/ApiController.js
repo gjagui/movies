@@ -6,6 +6,8 @@ const urlChangePwd="users/update";
 const urlSignIn="users/login";
 const urlGuardarSignUp="users/create"
 const urlComentariosUsuario="comments/user/";
+const urlComentarioPelicula = "comments/imdbID/";
+const urlCrearComentario = "comments/create/";
 const urlMovieSearch = "http://www.omdbapi.com/?i=tt3896198&apikey=d0b64143&s=";
 
 
@@ -14,16 +16,35 @@ class ApiController extends Component
     getUserComments = async (username) => {
         let comments_values = await fetch(`${url}${urlComentariosUsuario}${username}`);
         let comments = await comments_values.json();
-        
         return comments;
     };
 
     searchMovies = async (movie) => {
-        console.log(`${urlMovieSearch}${movie}`);
         let movies_values = await fetch(`${urlMovieSearch}${movie}`);
         let movies = await movies_values.json();
-
         return (movies.Response == "True") ? movies.Search : [];
+    }
+
+    getMovieComments = async (imdbID) => {
+        let comments_values = await fetch(`${url}${urlComentarioPelicula}${imdbID}`);
+        let comments = await comments_values.json();
+        return comments;
+    }
+
+    createComment = async (title, username, comment, score, imdbID) => {
+        let data = JSON.stringify({title, username, comment, score, imdbID});
+        console.log(data);
+        let options = {
+            method: 'POST',
+            mode: "cors",
+            headers: { 'Content-Type': 'application/json' },
+            body: data
+        };
+
+        let comment_status = await fetch(`${url}${urlCrearComentario}`, options);
+        console.log(comment_status);
+
+        return comment_status;
     }
     
     SignIn(data,rdoBusqueda)
