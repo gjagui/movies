@@ -17,16 +17,18 @@ export default class SearchFilm extends Component {
   static navigationOptions = { title: 'Películas a calificar' };
 
   updateSearch = async search => {
-    if (search.length > 3) {
+    this.setState({ search });
+
+    if (search.length > 2) {
       try {
         let movies = await ApiController.searchMovies(search);
-        this.setState({ search, movies });
+        this.setState({ movies });
         }
         catch (error) {
           console.log(error);
         }
       }
-      else this.setState({ search });
+    else this.setState({ movies: [] });
     }
 
   _onPressButton = (movie) => {
