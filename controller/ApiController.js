@@ -46,7 +46,7 @@ class ApiController extends Component
 
         return comment_status;
     }
-    
+
     SignIn(data,rdoBusqueda)
     {
 
@@ -82,7 +82,7 @@ class ApiController extends Component
     GuardarSignUp(data)
     {
         console.log(data);
-        const endpoint = `${url}${urlChangePwd}`;
+        const endpoint = `${url}${urlGuardarSignUp}`;
         console.log(endpoint);
         //console.log("Buscando")
         console.log(data);

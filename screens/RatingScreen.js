@@ -33,7 +33,7 @@ export default class RatingScreen extends Component {
     try {
       let comments = await ApiController.getMovieComments(imdbID);
       this.setState({ comments: comments.comments, rating: comments.rating, votes: comments.votes });
-    } 
+    }
     catch (error) {
       console.log(error);
     }
@@ -58,6 +58,7 @@ export default class RatingScreen extends Component {
     catch (error) {
       console.log(error);
     }
+    this.fetchComments(this.state.movie.imdbID);
   }
 
   render() {
