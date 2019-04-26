@@ -5,10 +5,27 @@ const url = "https://gustavomovies2.herokuapp.com/";
 const urlChangePwd="users/update";
 const urlSignIn="users/login";
 const urlGuardarSignUp="users/create"
+const urlComentariosUsuario="comments/user/";
+const urlMovieSearch = "http://www.omdbapi.com/?i=tt3896198&apikey=d0b64143&s=";
 
 
 class ApiController extends Component
 {
+    getUserComments = async (username) => {
+        let comments_values = await fetch(`${url}${urlComentariosUsuario}${username}`);
+        let comments = await comments_values.json();
+        
+        return comments;
+    };
+
+    searchMovies = async (movie) => {
+        console.log(`${urlMovieSearch}${movie}`);
+        let movies_values = await fetch(`${urlMovieSearch}${movie}`);
+        let movies = await movies_values.json();
+
+        return (movies.Response == "True") ? movies.Search : [];
+    }
+    
     SignIn(data,rdoBusqueda)
     {
 

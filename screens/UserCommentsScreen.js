@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, Text, View, StyleSheet, Button,ImageBackground } from 'react-native';
+import ApiController from '../controller/ApiController';
 
 const USER_COMMENTS_URL = "http://gustavomovies2.herokuapp.com/comments/user/";
 
@@ -22,12 +23,15 @@ export default class UserComments extends Component {
     this.props.navigation.navigate('Search',{username: this.state.username});
     }
 
-    fetchUserComment = (username) => {
-        fetch(`${USER_COMMENTS_URL}${username}`)
-        .then(result    => result.json())
-        .then(comments  => { this.setState({ comments })})
-        .catch(error    => console.log(error));
-    }
+    fetchUserComment = async (username) => {
+        try {
+          let comments = await ApiController.getUserComments(username);
+          this.setState({comments});
+        }
+        catch (error) {
+          console.log(error);
+        }
+    };
 
     render() {
         let comments = <Text></Text>;
