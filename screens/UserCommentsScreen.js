@@ -1,60 +1,73 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, View, StyleSheet, Button,ImageBackground } from 'react-native';
+import { ScrollView, Text, View, StyleSheet, Button, ImageBackground } from 'react-native';
+import { ListItem } from 'react-native-elements';
 import ApiController from '../controller/ApiController';
+import { Rating } from 'react-native-ratings';
 
 export default class UserComments extends Component {
 
-    static navigationOptions = { title: 'Mis Comentarios' };
+  static navigationOptions = { title: 'Mis Comentarios' };
 
-    constructor(props) {
-        super(props);
-        this.state = { comments: {},
-        username: this.props.navigation.getParam('username')
-      };
+  constructor(props) {
+    super(props);
+    this.state = {
+      comments: {},
+      username: this.props.navigation.getParam('username')
     };
+  };
 
-    componentDidMount = () => {
-        this.fetchUserComment(this.state.username);
-    };
+  componentDidMount = () => {
+    this.fetchUserComment(this.state.username);
+  };
 
-    search = () => {
-    this.props.navigation.navigate('Search',{username: this.state.username});
+  search = () => {
+    this.props.navigation.navigate('Search', { username: this.state.username });
+  }
+
+  fetchUserComment = async (username) => {
+    try {
+      let comments = await ApiController.getUserComments(username);
+      this.setState({ comments });
     }
+    catch (error) {
+      console.log(error);
+    }
+  };
 
-    fetchUserComment = async (username) => {
-        try {
-          let comments = await ApiController.getUserComments(username);
-          this.setState({comments});
-        }
-        catch (error) {
-          console.log(error);
-        }
-    };
+  render() {
+    let comments = <Text></Text>;
 
-    render() {
-        let comments = <Text></Text>;
+    if (this.state.comments.length > 0) {
 
-        if (this.state.comments.length > 0) {
-
-            comments = this.state.comments.map((comment) => {
-
-            return (
-
-                <View key= {comment._id} style={styles.comment}>
-                    <Text h1>Título: {comment.title}</Text>
-                    <Text h3>Voto: {comment.score}</Text>
-                    <Text h4>Comentario: {comment.comment}</Text>
-                </View>
-
-                );
-            });
-        }
+      comments = this.state.comments.map((comment,i) => {
 
         return (
-            <ScrollView>
-            <ImageBackground source={require ("../assets/images/foto.jpg")} style={{width: '100%', height: '100%'}}>
-            <View style={styles.container2}>
-              <View style={styles.btn}>
+
+          
+          <ListItem
+            key={i}
+            title={comment.title}
+            subtitle={comment.comment}
+            rightElement={
+              <Rating
+                imageSize = {20}
+                readonly
+                startingValue={comment.score}
+              />
+            
+            }
+            
+          />
+
+        );
+      });
+    }
+
+    return (
+      <ScrollView>
+        <ImageBackground source={require("../assets/images/foto.jpg")} style={{ width: '100%', height: '100%' }}>
+          <View style={styles.container2}>
+            <View style={styles.btn}>
               <Button
                 color='#6584be'
                 title='Buscar Peliculas'
@@ -63,10 +76,11 @@ export default class UserComments extends Component {
               </View>
               <Text h1 style={styles.texto}>Historial de comentarios</Text>
             </View>
-                { comments }
-            </ImageBackground>
-            </ScrollView>
-            )
+            <Text h1 style={styles.texto}>Estos son los comentarios que hiciste:</Text>
+          {comments}
+        </ImageBackground>
+      </ScrollView>
+    )
   };
 }
 

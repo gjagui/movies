@@ -1,4 +1,4 @@
-import { Rating } from 'react-native-elements';
+import { Rating, ListItem } from 'react-native-elements';
 import React, { Component } from 'react';
 import {
   View,
@@ -68,15 +68,26 @@ export default class RatingScreen extends Component {
     if (this.state.comments.length > 0) {
 
 
-      comments = this.state.comments.map((comment) => {
+      comments = this.state.comments.map((comment,i) => {
 
         return (
-          <View key={comment._id} style={styles.comment}>
-            <Text style={styles.user}>{comment.username}{"\n"}</Text>
+          <ListItem
+            key={i}
+            title={comment.username}
+            subtitle={comment.comment}
+            rightElement={
+              <Rating
+                imageSize = {20}
+                readonly
+                startingValue={comment.score}
+              />
+            }
+            
+          //  {/* <Text style={styles.user}>{comment.username}{"\n"}</Text>
 
-            <Text>Comentario: {comment.comment}{"\n"}</Text>
-            <Text>Estrellas: {comment.score}</Text>
-          </View>
+          //  <Text>Comentario: {comment.comment}{"\n"}</Text>
+          //  <Text>Estrellas: {comment.score}</Text> */}
+          />
 
         );
       });
