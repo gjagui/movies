@@ -8,7 +8,8 @@ import {
   Text,
   ScrollView,
   Button,
-  Image
+  Image,
+  Alert
 } from 'react-native';
 import ApiController from '../controller/ApiController';
 
@@ -19,7 +20,7 @@ export default class RatingScreen extends Component {
       movie: this.props.navigation.getParam('movieData'),
       title: this.props.navigation.getParam('title'),
       username: this.props.navigation.getParam('username'),
-      comment_rating: 0,
+      comment_rating: 0.0,
       rating: 0,
       comments: [],
       votes: 0,
@@ -59,6 +60,8 @@ export default class RatingScreen extends Component {
       console.log(error);
     }
     this.fetchComments(this.state.movie.imdbID);
+    this.setState({comentario: '', comment_rating: 0.0});
+    Alert.alert("Comentario", "Gracias por su comentario.");
   }
 
   render() {
@@ -114,7 +117,7 @@ export default class RatingScreen extends Component {
             </View>
             <View style={styles.commentContainer}>
               <Rating
-                startingValue={0.0}
+                startingValue={this.state.comment_rating}
                 onFinishRating={this.ratingCompleted.bind(this)}
                 style={{ paddingVertical: 10 }}
               />
@@ -125,7 +128,9 @@ export default class RatingScreen extends Component {
                 alignItems="center"
                 autoCapitalize="none"
                 placeholderTextColor='gray'
-                onChangeText={val => this.onChangeText('comentario', val)} />
+                onChangeText={val => this.onChangeText('comentario', val)} 
+                value={this.state.comentario}  
+                />
               <Button
                 color='#6584be'
                 title='Calificar'
