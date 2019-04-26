@@ -9,12 +9,8 @@ import {
   ScrollView,
   Button,
   Image
-} from 'react-native'
-import { BorderlessButton } from 'react-native-gesture-handler';
-
-const MOVIE_URL = "http://www.omdbapi.com/?apikey=d0b64143&i=";
-const COMMENTS_URL = "http://gustavomovies2.herokuapp.com/comments/imdbID/";
-const SAVECOMMENTS_URL = "http://gustavomovies2.herokuapp.com/comments/Create/"
+} from 'react-native';
+import ApiController from '../controller/ApiController';
 
 export default class RatingScreen extends Component {
   constructor(props) {
@@ -31,51 +27,39 @@ export default class RatingScreen extends Component {
     }
   }
 
-  componentDidMount = () => {
-    this.fetchComments(this.state.movie.imdbID);
-  }
+  componentDidMount = () => this.fetchComments(this.state.movie.imdbID);
 
-
-  fetchComments = () => {
-    fetch(`${COMMENTS_URL}${this.state.movie.imdbID}`)
-      .then(result => result.json())
-      .then(comments => { this.setState({ comments: comments.comments, rating: comments.rating, votes: comments.votes }) })
-      .catch(error => console.log(error));
+  fetchComments = async (imdbID) => {
+    try {
+      let comments = await ApiController.getMovieComments(imdbID);
+      this.setState({ comments: comments.comments, rating: comments.rating, votes: comments.votes });
+    }
+    catch (error) {
+      console.log(error);
+    }
   }
 
   onChangeText = (key, val) => this.setState({ [key]: val });
 
   ratingCompleted = (rating) => this.setState({ comment_rating: rating });
 
-  guardarCalificacion() {
+  async guardarCalificacion() {
+    try {
+      let status_value = await ApiController.createComment(
+        this.state.title,
+        this.state.username,
+        this.state.comentario,
+        this.state.comment_rating,
+        this.state.movie.imdbID);
 
-    texto = { title: this.state.title, username: this.state.username, comment: this.state.comentario, score: this.state.comment_rating, imdbID: this.state.movie.imdbID };
-    fetch(`${SAVECOMMENTS_URL}`, {
-      method: 'POST', // or 'PUT'
-      mode: "cors",
-      headers: { 'Content-Type': 'application/json' },
-      // body: JSON.stringify({title: this.state.title, username: username1, comment: this.state.comentario, score: this.state.rating}) // data can be `string` or {object}!
-      body: JSON.stringify(texto),
-
-    }).then((response) => {
-      console.log(texto);
-      this.fetchComments();
-      return response.json();
-    }).then(responseData => {
-      console.log(responseData);
-      this.fetchComments();
-
-      //console.log("Recibi datos");
-    }).catch((err) => {
-      console.log(err);
-
-    });
-
-
-
-
+      let status = status_value.json();
+      console.log(status);
+    }
+    catch (error) {
+      console.log(error);
+    }
+    this.fetchComments(this.state.movie.imdbID);
   }
-
 
   render() {
 
@@ -119,6 +103,7 @@ export default class RatingScreen extends Component {
             </View>
             <View style={styles.commentContainer}>
               <Rating
+                startingValue={0.0}
                 onFinishRating={this.ratingCompleted.bind(this)}
                 style={{ paddingVertical: 10 }}
               />
