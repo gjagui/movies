@@ -103,6 +103,7 @@ export default class RatingScreen extends Component {
             </View>
             <View style={styles.commentContainer}>
               <Rating
+                startingValue={0.0}
                 onFinishRating={this.ratingCompleted.bind(this)}
                 style={{ paddingVertical: 10 }}
               />

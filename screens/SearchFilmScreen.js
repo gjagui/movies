@@ -17,7 +17,7 @@ export default class SearchFilm extends Component {
   static navigationOptions = { title: 'Películas a calificar' };
 
   updateSearch = async search => {
-    if (search.length > 4) {
+    if (search.length > 3) {
       try {
         let movies = await ApiController.searchMovies(search);
         this.setState({ search, movies });
@@ -26,7 +26,7 @@ export default class SearchFilm extends Component {
           console.log(error);
         }
       }
-      else this.setState({ search, movies: [] });
+      else this.setState({ search });
     }
 
   _onPressButton = (movie) => {
