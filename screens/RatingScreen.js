@@ -116,6 +116,7 @@ export default class RatingScreen extends Component {
                 placeholderTextColor='gray'
                 onChangeText={val => this.onChangeText('comentario', val)} />
               <Button
+                color='#6584be'
                 title='Calificar'
                 onPress={this.guardarCalificacion.bind(this)}
                 borderRadius={10}

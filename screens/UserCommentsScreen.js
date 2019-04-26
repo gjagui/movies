@@ -61,7 +61,7 @@ export default class UserComments extends Component {
                 onPress={this.search}
               />
               </View>
-              <Text h1 style={styles.texto}>Estos son los comentarios que hiciste:</Text>
+              <Text h1 style={styles.texto}>Historial de comentarios</Text>
             </View>
                 { comments }
             </ImageBackground>
